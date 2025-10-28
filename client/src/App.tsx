@@ -5,15 +5,35 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Benefits from "./pages/Benefits";
+import Process from "./pages/Process";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 
 function Router() {
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <div className="flex flex-col min-h-screen">
+      <Navigation />
+      <main className="flex-grow">
+        <Switch>
+          <Route path={"/"} component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/services" component={Services} />
+          <Route path="/benefits" component={Benefits} />
+          <Route path="/process" component={Process} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/contact" component={Contact} />
+          <Route path={"/404"} component={NotFound} />
+          {/* Final fallback route */}
+          <Route component={NotFound} />
+        </Switch>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
