@@ -22,8 +22,12 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           <Link href="/">
-            <a className="text-xl font-bold text-blue-600 hover:text-blue-700">
-              Our Resolution Family Mediation Services
+            <a className="flex items-center hover:opacity-90 transition-opacity">
+              <img
+                src="/logo-full.png"
+                alt="Our Resolution Family Mediation Services"
+                className="h-14 w-auto"
+              />
             </a>
           </Link>
 
@@ -85,4 +89,3 @@ export default function Navigation() {
     </nav>
   );
 }
-
