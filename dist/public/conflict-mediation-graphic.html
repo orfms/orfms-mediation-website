@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Conflict to Resolution Graphic</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      width: 1100px;
+    }
+
+    .canvas {
+      width: 1100px;
+      background: #ffffff;
+      padding: 28px 28px 22px;
+    }
+
+    /* ══ WORD CLOUD ══ */
+    .word-cloud-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .word-cloud {
+      position: relative;
+      width: 580px;
+      height: 255px;
+    }
+
+    .word {
+      position: absolute;
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    /* ══ MIDDLE ROW ══ */
+    .middle-row {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-top: -8px;
+    }
+
+    /* Photos */
+    .photo-frame {
+      width: 330px;
+      height: 225px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(30,58,138,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .label-conflict {
+      background: linear-gradient(0deg, rgba(30,58,138,0.85) 0%, transparent 100%);
+      color: #bfdbfe;
+    }
+
+    .label-resolution {
+      background: linear-gradient(0deg, rgba(5,150,105,0.85) 0%, transparent 100%);
+      color: #a7f3d0;
+    }
+
+    /* Center column */
+    .center-col {
+      flex: 1;
+      height: 225px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Choice box */
+    .choice-box {
+      background: #ffffff;
+      border: 2.5px solid #1d4ed8;
+      border-radius: 12px;
+      padding: 16px 20px 14px;
+      width: 175px;
+      box-shadow: 0 4px 20px rgba(29,78,216,0.16);
+      position: relative;
+      z-index: 10;
+    }
+
+    .choice-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 13px;
+    }
+
+    .choice-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+    .choice-option:last-child { margin-bottom: 0; }
+
+    .radio-outer {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2.5px solid #1d4ed8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .radio-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1d4ed8;
+    }
+
+    .choice-label {
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .label-resolved  { color: #1d4ed8; }
+    .label-continued { color: #94a3b8; }
+
+    /* Arrow SVG overlay — spans full middle row width */
+    .arrow-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: visible;
+    }
+
+    /* ══ BOTTOM ══ */
+    .bottom-label {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 10.5px;
+      color: #93c5fd;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- WORD CLOUD -->
+  <div class="word-cloud-wrap">
+    <div class="word-cloud">
+      <!-- Largest / darkest = most prominent -->
+      <span class="word" style="font-size:54px;color:#1e3a8a;top:76px;left:118px;">DIVORCE</span>
+      <span class="word" style="font-size:40px;color:#1d4ed8;top:142px;left:178px;">marriage</span>
+      <span class="word" style="font-size:34px;color:#2563eb;top:108px;left:308px;">separation</span>
+      <span class="word" style="font-size:30px;color:#1e40af;top:144px;left:382px;">court</span>
+      <span class="word" style="font-size:27px;color:#2563eb;top:58px;left:320px;">alimony</span>
+      <!-- Medium -->
+      <span class="word" style="font-size:21px;color:#1d4ed8;top:28px;left:195px;">divorce papers</span>
+      <span class="word" style="font-size:19px;color:#3b82f6;top:52px;left:58px;">spouse</span>
+      <span class="word" style="font-size:17px;color:#2563eb;top:88px;left:22px;">divorcee</span>
+      <span class="word" style="font-size:19px;color:#3b82f6;top:118px;left:16px;">stress</span>
+      <span class="word" style="font-size:16px;color:#1d4ed8;top:150px;left:20px;">no-fault divorce</span>
+      <span class="word" style="font-size:15px;color:#2563eb;top:178px;left:68px;">separation</span>
+      <span class="word" style="font-size:16px;color:#1e40af;top:194px;left:190px;">statistics</span>
+      <span class="word" style="font-size:14px;color:#3b82f6;top:198px;left:310px;">marriage counseling</span>
+      <span class="word" style="font-size:15px;color:#2563eb;top:182px;left:436px;">legal process</span>
+      <span class="word" style="font-size:14px;color:#3b82f6;top:162px;left:462px;">dissolution</span>
+      <span class="word" style="font-size:13px;color:#1d4ed8;top:130px;left:474px;">failure</span>
+      <span class="word" style="font-size:14px;color:#60a5fa;top:96px;left:464px;">legal process</span>
+      <span class="word" style="font-size:13px;color:#2563eb;top:66px;left:454px;">family</span>
+      <span class="word" style="font-size:15px;color:#1e40af;top:40px;left:396px;">matrimony</span>
+      <span class="word" style="font-size:13px;color:#3b82f6;top:26px;left:348px;">married couple</span>
+      <!-- Small -->
+      <span class="word" style="font-size:12px;color:#93c5fd;top:16px;left:148px;">divorce rate</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:8px;left:272px;">premarital agreement</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:20px;left:462px;">alimony</span>
+      <span class="word" style="font-size:12px;color:#60a5fa;top:46px;left:490px;">child custody</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:74px;left:500px;">personality clash</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:106px;left:512px;">debt</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:168px;left:494px;">children</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:208px;left:460px;">legal process</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:218px;left:350px;">lawyer</span>
+      <span class="word" style="font-size:12px;color:#60a5fa;top:216px;left:266px;">money</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:222px;left:170px;">family</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:218px;left:96px;">children</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:208px;left:24px;">blame</span>
+      <span class="word" style="font-size:12px;color:#60a5fa;top:170px;left:4px;">lawyer</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:138px;left:2px;">child custody</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:106px;left:4px;">domestic violence</span>
+      <span class="word" style="font-size:12px;color:#60a5fa;top:74px;left:8px;">alimony</span>
+      <span class="word" style="font-size:11px;color:#bfdbfe;top:44px;left:12px;">children</span>
+      <span class="word" style="font-size:11px;color:#93c5fd;top:16px;left:54px;">family</span>
+      <span class="word" style="font-size:13px;color:#3b82f6;top:106px;left:154px;">child custody</span>
+      <span class="word" style="font-size:13px;color:#2563eb;top:130px;left:84px;">money</span>
+      <span class="word" style="font-size:14px;color:#1d4ed8;top:86px;left:96px;">lawyer</span>
+      <span class="word" style="font-size:13px;color:#3b82f6;top:66px;left:140px;">domestic violence</span>
+    </div>
+  </div>
+
+  <!-- MIDDLE ROW -->
+  <div class="middle-row">
+
+    <!-- Left photo -->
+    <div class="photo-frame">
+      <img src="conflict-scene.jpg" alt="Couple in conflict" />
+      <div class="photo-label label-conflict">The Conflict</div>
+    </div>
+
+    <!-- Center -->
+    <div class="center-col">
+
+      <!-- Arrows drawn in SVG, coordinates relative to center-col (440px wide × 225px tall) -->
+      <svg class="arrow-layer"
+           viewBox="0 0 440 225"
+           xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" markerWidth="12" markerHeight="8"
+                  refX="10" refY="4" orient="auto">
+            <polygon points="0 0, 12 4, 0 8" fill="#1d4ed8"/>
+          </marker>
+        </defs>
+
+        <!-- LEFT arrow: from left edge → into box -->
+        <path d="M 0,155 H 90 V 113 H 132"
+              fill="none" stroke="#1d4ed8" stroke-width="6"
+              stroke-linecap="round" stroke-linejoin="round"
+              marker-end="url(#arr)"/>
+
+        <!-- RIGHT arrow: from box → right edge -->
+        <path d="M 308,113 H 350 V 155 H 440"
+              fill="none" stroke="#1d4ed8" stroke-width="6"
+              stroke-linecap="round" stroke-linejoin="round"
+              marker-end="url(#arr)"/>
+      </svg>
+
+      <!-- Choice box -->
+      <div class="choice-box">
+        <div class="choice-title">Conflict:</div>
+        <div class="choice-option">
+          <div class="radio-outer">
+            <div class="radio-inner"></div>
+          </div>
+          <span class="choice-label label-resolved">Resolved</span>
+        </div>
+        <div class="choice-option">
+          <div class="radio-outer" style="border-color:#cbd5e1;"></div>
+          <span class="choice-label label-continued">Continued</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right photo -->
+    <div class="photo-frame">
+      <img src="mediation-resolution.jpg" alt="Mediation resolution" />
+      <div class="photo-label label-resolution">Resolution</div>
+    </div>
+
+  </div>
+
+  <!-- Bottom brand line -->
+  <div class="bottom-label">
+    Our Resolution Family Mediation Services &nbsp;·&nbsp; ourresolutionfms.com
+  </div>
+
+</div>
+</body>
+</html>

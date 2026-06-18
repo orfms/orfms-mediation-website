@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Types of Conflict Resolution Techniques</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .graphic-wrapper {
+      background: #ffffff;
+      border-radius: 0;
+      overflow: hidden;
+      width: 1200px;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
+      padding: 30px 40px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -70px; right: 100px;
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #bfdbfe;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .header h1 {
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header p {
+      color: #93c5fd;
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Step tabs ── */
+    .steps-bar {
+      display: flex;
+    }
+
+    .step-tab {
+      flex: 1;
+      padding: 13px 10px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .step-tab:nth-child(1) { background: #1e40af; color: #fff; }
+    .step-tab:nth-child(2) { background: #2563eb; color: #fff; }
+    .step-tab:nth-child(3) { background: #1e40af; color: #fff; }
+    .step-tab:nth-child(4) { background: #2563eb; color: #fff; }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      font-size: 10px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ── Cards grid ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      padding: 26px 22px 22px;
+      border-right: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .card:last-child { border-right: none; }
+    .card:nth-child(odd)  { background: #ffffff; }
+    .card:nth-child(even) { background: #f8faff; }
+
+    /* Icon */
+    .icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-wrap.c1 { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); box-shadow: 0 4px 14px rgba(30,58,138,.28); }
+    .icon-wrap.c2 { background: linear-gradient(135deg, #1d4ed8, #2563eb); box-shadow: 0 4px 14px rgba(29,78,216,.28); }
+    .icon-wrap.c3 { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 4px 14px rgba(37,99,235,.28); }
+    .icon-wrap.c4 { background: linear-gradient(135deg, #3b82f6, #60a5fa); box-shadow: 0 4px 14px rgba(96,165,250,.30); }
+
+    .icon-wrap svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Card text */
+    .card-subtitle {
+      font-size: 10px;
+      font-weight: 700;
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 3px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+
+    /* Bullet list */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1;
+    }
+
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 4.5px;
+      flex-shrink: 0;
+    }
+
+    .d1 { background: #1e3a8a; }
+    .d2 { background: #2563eb; }
+    .d3 { background: #3b82f6; }
+    .d4 { background: #60a5fa; }
+
+    /* Bottom accent bar */
+    .card-bar {
+      height: 3px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .bar1 { background: linear-gradient(90deg, #1e3a8a, #1d4ed8); }
+    .bar2 { background: linear-gradient(90deg, #1d4ed8, #2563eb); }
+    .bar3 { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+    .bar4 { background: linear-gradient(90deg, #3b82f6, #93c5fd); }
+
+    /* Connector arrow */
+    .connector {
+      position: absolute;
+      right: -13px;
+      top: 44px;
+      z-index: 10;
+      width: 26px;
+      height: 26px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(37,99,235,.35);
+    }
+
+    .card:last-child .connector { display: none; }
+
+    /* ── Footer ── */
+    .graphic-footer {
+      background: #eff6ff;
+      border-top: 1px solid #dbeafe;
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+<div class="graphic-wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">Our Resolution Family Mediation Services</div>
+    <h1>Types of Conflict Resolution Techniques</h1>
+    <p>Understanding the spectrum of options available for resolving family disputes — from collaborative negotiation to formal court proceedings — helps you make the most informed choice for your situation.</p>
+  </div>
+
+  <!-- Step tabs -->
+  <div class="steps-bar">
+    <div class="step-tab"><span class="step-num">1</span> Negotiation</div>
+    <div class="step-tab"><span class="step-num">2</span> Mediation</div>
+    <div class="step-tab"><span class="step-num">3</span> Arbitration</div>
+    <div class="step-tab"><span class="step-num">4</span> Litigation</div>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards-grid">
+
+    <!-- 1. Negotiation -->
+    <div class="card">
+      <div class="icon-wrap c1">
+        <!-- Handshake / agreement icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 7H3a1 1 0 00-1 1v8a1 1 0 001 1h2m14-10h2a1 1 0 011 1v8a1 1 0 01-1 1h-2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M5 7h14v10H5V7z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-subtitle">Step 1 — Most Collaborative</div>
+        <div class="card-title">Negotiation</div>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="bullet-dot d1"></span>Parties work directly together to reach a mutually acceptable settlement</li>
+        <li><span class="bullet-dot d1"></span>Offers the best alternative to formal agreements, preserving relationships</li>
+        <li><span class="bullet-dot d1"></span>Achieves acceptable outcomes for both parties without outside interference</li>
+        <li><span class="bullet-dot d1"></span>Lowest cost and fastest resolution; fully private and confidential</li>
+      </ul>
+      <div class="card-bar bar1"></div>
+      <div class="connector">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+
+    <!-- 2. Mediation -->
+    <div class="card">
+      <div class="icon-wrap c2">
+        <!-- Two people with a bridge / mediator icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="6" r="2.5" stroke="#fff" stroke-width="2"/>
+          <circle cx="17" cy="6" r="2.5" stroke="#fff" stroke-width="2"/>
+          <path d="M2 20c0-3 2.24-5 5-5s5 2 5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 20c0-3 2.24-5 5-5s5 2 5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 10v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="8.5" r="1.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-subtitle">Step 2 — Facilitated</div>
+        <div class="card-title">Mediation</div>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="bullet-dot d2"></span>A professional mediator facilitates discussions and helps settle disagreements</li>
+        <li><span class="bullet-dot d2"></span>Mediator is a neutral third party with no bias toward either side</li>
+        <li><span class="bullet-dot d2"></span>Both internal and external mediators can be used depending on the situation</li>
+        <li><span class="bullet-dot d2"></span>Voluntary, confidential process — parties retain full control of outcomes</li>
+      </ul>
+      <div class="card-bar bar2"></div>
+      <div class="connector">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+
+    <!-- 3. Arbitration -->
+    <div class="card">
+      <div class="icon-wrap c3">
+        <!-- Scale / balance icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3v18M12 3l-4 8h8L12 3zM4 11l-2 4h4l-2-4zM20 11l-2 4h4l-2-4z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 21h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M4 15a2 2 0 004 0M16 15a2 2 0 004 0" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-subtitle">Step 3 — Binding Decision</div>
+        <div class="card-title">Arbitration</div>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="bullet-dot d3"></span>Similar to a court trial with an unbiased third party acting as judge</li>
+        <li><span class="bullet-dot d3"></span>Arbitrator listens to both sides and renders a binding decision</li>
+        <li><span class="bullet-dot d3"></span>More formal than mediation but less public than court litigation</li>
+        <li><span class="bullet-dot d3"></span>Can be more expensive and time-consuming than mediation</li>
+      </ul>
+      <div class="card-bar bar3"></div>
+      <div class="connector">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+
+    <!-- 4. Litigation -->
+    <div class="card">
+      <div class="icon-wrap c4">
+        <!-- Gavel icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4l6 6-8 8-6-6 8-8z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 19l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 21h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 5l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 12l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-subtitle">Step 4 — Formal Court</div>
+        <div class="card-title">Litigation</div>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="bullet-dot d4"></span>Plaintiff and defendant present their case before a judge or jury</li>
+        <li><span class="bullet-dot d4"></span>Civil court proceedings are publicly recorded and accessible</li>
+        <li><span class="bullet-dot d4"></span>Judge issues an official, enforceable decision (often settled during pretrial)</li>
+        <li><span class="bullet-dot d4"></span>Most costly and time-consuming option; least control over outcomes</li>
+      </ul>
+      <div class="card-bar bar4"></div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="graphic-footer">
+    <span class="footer-brand">Our Resolution Family Mediation Services</span>
+    <span class="footer-note">ourresolutionfms.com &nbsp;·&nbsp; California Family Mediation</span>
+  </div>
+
+</div>
+</body>
+</html>
