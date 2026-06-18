@@ -1,8 +1,19 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function Blog() {
   const blogPosts = [
+    {
+      title: "California's SB 1427: A New Era of Collaborative Divorce",
+      category: "Legal Information",
+      date: "June 17, 2026",
+      excerpt:
+        "California's SB 1427, effective January 1, 2026, allows any married couple to file a joint petition for divorce — eliminating the adversarial structure that forced even amicable couples to sue each other. Learn what changed, who qualifies, and when it's right for you.",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
+      slug: "/blog/sb-1427-joint-petition-dissolution-of-marriage",
+      featured: true,
+    },
     {
       title: "10 Signs Mediation Is Right for Your Divorce",
       category: "Mediation Basics",
@@ -103,12 +114,19 @@ export default function Blog() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
+              <Card key={index} className={`overflow-hidden hover:shadow-lg transition-shadow ${ (post as any).featured ? 'ring-2 ring-blue-500' : ''}`}>
+                <div className="relative">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  {(post as any).featured && (
+                    <span className="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                      New
+                    </span>
+                  )}
+                </div>
                 <CardHeader>
                   <div className="text-sm text-blue-600 font-semibold mb-2">
                     {post.category}
@@ -120,9 +138,15 @@ export default function Blog() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <Button variant="outline" className="w-full">
-                    Read More
-                  </Button>
+                  {(post as any).slug ? (
+                    <Link href={(post as any).slug}>
+                      <Button variant="outline" className="w-full">Read More</Button>
+                    </Link>
+                  ) : (
+                    <Button variant="outline" className="w-full">
+                      Read More
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
